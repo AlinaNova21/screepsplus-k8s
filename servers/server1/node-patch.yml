@@ -17,3 +17,13 @@ spec:
     spec:
       nodeSelector:
         screepspl.us/server: server1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toolbox
+spec:
+  template:
+    spec:
+      nodeSelector:
+        screepspl.us/server: server1
