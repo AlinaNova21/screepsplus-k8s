@@ -5,6 +5,8 @@ metadata:
     app: screeps
   name: screeps
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: screeps

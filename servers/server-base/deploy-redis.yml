@@ -6,6 +6,8 @@ metadata:
   name: redis
   namespace: server2
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: redis
@@ -19,7 +21,6 @@ spec:
         name: redis
         ports:
         - containerPort: 6379
-          name: 6379tcp02
           protocol: TCP
         resources: {}
         volumeMounts:
