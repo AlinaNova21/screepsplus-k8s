@@ -18,7 +18,7 @@ bots:
 localMods: ./mods
 serverConfig:
   tickRate: 1000
-  shardName: screepsplus2
+  shardName: screepsplus2-test
   gclToCPU: true
   maxCPU: 120
   baseCPU: 20
