@@ -12,7 +12,7 @@ spec:
         app: mongodb
     spec:
       nodeSelector:
-        screepspl.us\server: server2
+        screepspl.us/server: server2
       containers:
       - image: mongo
         name: mongodb
