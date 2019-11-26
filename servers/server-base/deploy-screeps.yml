@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: screeps
+  name: screeps
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: screeps
+  template:
+    metadata:
+      labels:
+        app: screeps
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: server-secrets
+            optional: false
+        image: screepers/screeps-launcher
+        name: screeps
+        ports:
+        - containerPort: 21025
+          name: http
+          protocol: TCP
+        resources: {}
+        volumeMounts:
+        - mountPath: /screeps/config.yml
+          name: vol1
+          subPath: config.yml
+        - mountPath: /screeps/mods/morgan.js
+          name: vol1
+          subPath: mod-morgan.js
+        - mountPath: /screeps/market.yml
+          name: vol1
+          subPath: market.yml
+        - mountPath: /screeps
+          name: main
+      volumes:
+      - configMap:
+          defaultMode: 292
+          name: config
+          optional: false
+        name: vol1
+      - hostPath:
+          path: /srv/main
+          type: ""
+        name: main

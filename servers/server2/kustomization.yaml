@@ -1,0 +1,12 @@
+bases:
+- ../server-base
+commonLabels:
+  server: server2
+namePrefix: server2-
+configMapGenerator:
+- name: config
+  files:
+  - config.yml
+  - market.yml
+patchesStrategicMerge:
+- node-patch.yml

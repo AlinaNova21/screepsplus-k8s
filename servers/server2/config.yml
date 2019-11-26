@@ -1,0 +1,43 @@
+version: latest
+nodeVersion: Dubnium
+env:
+  shared:
+    MONGO_HOST: mongodb
+    MONGO_DATABASE: screeps2
+    REDIS_HOST: server2-redis
+mods:
+- screepsmod-mongo
+- screepsmod-auth
+- screepsmod-admin-utils
+- screepsmod-map-tool
+- screepsmod-market
+- screepsmod-history
+- screepsmod-web-client
+bots:
+  simplebot: "screepsbot-zeswarm"
+localMods: ./mods
+serverConfig:
+  tickRate: 1000
+  shardName: screepsplus2
+  gclToCPU: true
+  maxCPU: 120
+  baseCPU: 20
+  stepCPU: 10
+  constants:
+    CPU_MAX: 120
+    CPU_BASE: 20
+    CPU_STEP: 10
+  statsToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InB1YmxpYyIsInN1YiI6InB1YmxpYyIsImlhdCI6MTU2MjA4MTc2NCwiYXVkIjoic2NyZWVwc3BsLnVzIiwiaXNzIjoic2NyZWVwc3BsLnVzIn0.XgkSmWpf83VLscHiU7f-nEjq8lgZt6ZmB9BEsP_EiqQ
+  welcomeText: |
+    <style>.screepsplus h1{  text-align: center; }</style>
+    <div class="screepsplus">
+    <h1>ScreepsPlus</h1>
+    Wecome to the ScreepsPlus seasonal private server.<br>
+    Server wipes are quarterly.
+    Mods include screepsmod-auth and several custom mods to enable email notifications, control tickrate, power banks, portals, and other internal improvements.<br><br>
+    <a href="https://server2.screepspl.us/authmod/password">Click here to set your password</a>
+    <br><br>
+    <div style="text-align: center">
+    This server is funded by backers on Patreon. <br>
+    <a target="_blank" href="https://www.patreon.com/bePatron?u=6867142" ><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png"></a>
+    </div>

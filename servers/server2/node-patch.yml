@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  template:
+    spec:
+      nodeSelector:
+        screepspl.us/server: server2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: screeps
+spec:
+  template:
+    spec:
+      nodeSelector:
+        screepspl.us/server: server2

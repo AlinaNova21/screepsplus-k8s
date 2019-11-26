@@ -1,0 +1,5 @@
+resources:
+- deploy-redis.yml
+- svc-redis.yml
+- deploy-screeps.yml
+- svc-screeps.yml

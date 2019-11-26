@@ -1,0 +1,24 @@
+# modes are for potential future use
+priceMode: 'fixed'
+sellMode: 'always'
+buyMode: 'always'
+sellPrices:
+  energy: 1000
+  H: 2500
+  O: 2500
+  Z: 4000
+  K: 4000
+  U: 4000
+  L: 4000
+  X: 9000
+buyPrices:
+  energy: 200
+  H: 500
+  O: 500
+  Z: 800
+  K: 800
+  U: 800
+  L: 800
+  X: 1800
+sellMineralAmount: 1000000
+buyMineralAmount: 1000000

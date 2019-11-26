@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redis
+  name: redis
+  namespace: server2
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - image: redis
+        name: redis
+        ports:
+        - containerPort: 6379
+          name: 6379tcp02
+          protocol: TCP
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: redis-data
+      nodeSelector:
+        screepspl.us/server: server1
+      volumes:
+      - hostPath:
+          path: /srv/redis-data
+          type: ""
+        name: redis-data
