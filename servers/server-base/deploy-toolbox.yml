@@ -16,10 +16,9 @@ spec:
     spec:
       containers:
       - args:
-        - bash
         - -c
         - while true; do sleep 10000; done
-        image: ubuntu:18.04
+        image: ags131/screeps-toolbox
         name: toolbox
         resources: {}
         volumeMounts:
