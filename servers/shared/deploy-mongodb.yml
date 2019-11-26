@@ -11,6 +11,8 @@ spec:
       labels:
         app: mongodb
     spec:
+      nodeSelector:
+        screepspl.us\server: server2
       containers:
       - image: mongo
         name: mongodb
