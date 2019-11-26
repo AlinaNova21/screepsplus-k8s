@@ -6,7 +6,7 @@ namePrefix: server2-
 configMapGenerator:
 - name: config
   files:
-  - config.yml
-  - market.yml
+  - config.yml=config/config.yml
+  - market.yml=config/market.yml
 patchesStrategicMerge:
 - node-patch.yml
