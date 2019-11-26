@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: toolbox
+  name: toolbox
+  namespace: server2
+spec:
+  selector:
+    matchLabels:
+      app: toolbox
+  template:
+    metadata:
+      labels:
+        app: toolbox
+    spec:
+      containers:
+      - args:
+        - bash
+        - -c
+        - while true; do sleep 10000; done
+        image: ubuntu:18.04
+        name: toolbox
+        resources: {}
+        volumeMounts:
+        - mountPath: /screeps
+          name: main
+        - mountPath: /backups
+          name: backups
+      volumes:
+      - hostPath:
+          path: /srv/main
+          type: ""
+        name: main
+      - hostPath:
+          path: /srv/backups
+          type: ""
+        name: backups

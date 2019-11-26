@@ -3,3 +3,4 @@ resources:
 - svc-redis.yml
 - deploy-screeps.yml
 - svc-screeps.yml
+- deploy-toolbox.yml
