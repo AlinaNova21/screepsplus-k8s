@@ -10,3 +10,4 @@ configMapGenerator:
   - market.yml=config/market.yml
 patchesStrategicMerge:
 - node-patch.yml
+- ingress.yml

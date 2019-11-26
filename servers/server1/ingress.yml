@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: server
+spec:
+  rules:
+  - host: test.server1.screepspl.us
+    http:
+      paths:
+      - backend:
+          serviceName: screeps
+          servicePort: http
