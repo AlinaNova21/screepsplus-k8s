@@ -13,7 +13,7 @@ mods:
 - screepsmod-auth
 - screepsmod-market
 - screepsmod-admin-utils
-- screepsmod-history
+# - screepsmod-history
 - screepsmod-web-client
 - screepsmod-mail-aws-ses
 bots:
