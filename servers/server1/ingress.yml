@@ -10,3 +10,9 @@ spec:
       - backend:
           serviceName: screeps
           servicePort: http
+  - host: server1.screepspl.us
+    http:
+      paths:
+      - backend:
+          serviceName: screeps
+          servicePort: http

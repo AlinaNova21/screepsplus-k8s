@@ -8,4 +8,5 @@ RUN groupadd --gid 1000 screeps \
   && mkdir /screeps && chown screeps.screeps /screeps
 USER screeps
 WORKDIR /home/screeps
+RUN echo "alias mongo='mongo --host=mongodb'" >> .bashrc
 ENTRYPOINT [ "/bin/bash" ]
