@@ -17,7 +17,7 @@ mods:
 - screepsmod-web-client
 - screepsmod-mail-aws-ses
 extraPackages:
-  '@screeps/driver': 'screeps/driver#fix-room-activation/DEV-476'
+#  '@screeps/driver': 'screeps/driver#fix-room-activation/DEV-476'
 bots:
   zeswarm: "screepsbot-zeswarm"
 localMods: ./mods
