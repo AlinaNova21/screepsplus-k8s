@@ -14,7 +14,7 @@ mods:
 - screepsmod-history
 - screepsmod-web-client
 #- screepsmod-market
-- screepsmod-dynamicmarket
+#- screepsmod-dynamicmarket
 extraPackages:
 #  '@screeps/driver': 'screeps/driver#fix-room-activation/DEV-476'
 bots:
