@@ -13,9 +13,10 @@ mods:
 - screepsmod-auth
 - screepsmod-market
 - screepsmod-admin-utils
-# - screepsmod-history
+- screepsmod-history
 - screepsmod-web-client
 - screepsmod-mail-aws-ses
+- screepsmod-dynamicmarket
 extraPackages:
 #  '@screeps/driver': 'screeps/driver#fix-room-activation/DEV-476'
 bots:
