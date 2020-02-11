@@ -14,7 +14,7 @@ spec:
         app: mongodb
     spec:
       nodeSelector:
-        screepspl.us/server: server2
+        screepspl.us/server: server1
       containers:
       - image: mongo
         name: mongodb
