@@ -1,6 +1,6 @@
 version: latest
 nodeVersion: Dubnium
-runnerThreads: 10
+runnerThreads: 8
 env:
   shared:
     MONGO_HOST: mongodb
