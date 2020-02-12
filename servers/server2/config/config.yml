@@ -13,7 +13,7 @@ mods:
 - screepsmod-map-tool
 - screepsmod-history
 - screepsmod-web-client
-#- screepsmod-market
+- screepsmod-market
 #- screepsmod-dynamicmarket
 extraPackages:
 #  '@screeps/driver': 'screeps/driver#fix-room-activation/DEV-476'
