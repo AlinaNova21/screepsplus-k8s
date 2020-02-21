@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carbonapi-public
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: carbonapi-public
+  template:
+    metadata:
+      labels:
+        app: carbonapi-public
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: cloud.google.com/gke-preemptible
+                operator: In
+                values:
+                - 'true'
+      containers:
+      - name: carbonapi-public
+        image: ags131/carbonapi
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "100m"
+        ports:
+        - name: http-query
+          containerPort: 8081
+        volumeMounts:
+        - name: config
+          mountPath: /etc/carbonapi.yaml
+          subPath: carbonapi.yaml
+      volumes:
+      - name: config
+        configMap:
+          name: carbonapi-public

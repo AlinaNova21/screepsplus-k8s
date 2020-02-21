@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: public-stats
+spec:
+  rules:
+  - 
+    host: stats.wg1.dev
+    http:
+      paths:
+      - backend:
+          serviceName: grafana-public
+          servicePort: http

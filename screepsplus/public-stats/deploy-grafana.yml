@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-public
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: grafana-public
+  template:
+    metadata:
+      labels:
+        app: grafana-public
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: cloud.google.com/gke-preemptible
+                operator: In
+                values:
+                - 'true'
+      containers:
+      - name: grafana
+        image: 'grafana/grafana:6.6.0'
+        env:
+        - name: GF_INSTALL_PLUGINS
+          value: 'grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel,ryantxu-ajax-panel,michaeldmoore-multistat-panel,yesoreyeram-boomtable-panel'
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "100m"
+        ports:
+        - name: http
+          containerPort: 3000
+        volumeMounts:
+        - name: config
+          mountPath: /etc/grafana
+      - name: cloudsql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.16
+        command: ["/cloud_sql_proxy",
+                  "-instances=screeps-159019:us-east1:mysql-1=tcp:3306",
+                  # If running on a VPC, the Cloud SQL proxy can connect via Private IP. See:
+                  # https://cloud.google.com/sql/docs/mysql/private-ip for more info.
+                  # "-ip_address_types=PRIVATE",
+                  "-credential_file=/secrets/cloudsql/credentials.json"]
+        securityContext:
+          runAsUser: 2  # non-root user
+          allowPrivilegeEscalation: false
+        volumeMounts:
+        - name: cloudsql-instance-credentials
+          mountPath: /secrets/cloudsql
+          readOnly: true
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "100m"
+      volumes:
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: cloudsql
+      - name: config
+        configMap:
+          name: grafana-public

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-carbon-public
+spec:
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app: go-carbon-public
+  template:
+    metadata:
+      labels:
+        app: go-carbon-public
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cloud.google.com/gke-preemptible
+                operator: NotIn
+                values:
+                - 'true'
+      containers:
+      - name: go-carbon-public
+        image: ags131/go-carbon
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "100m"
+        ports:
+        - name: http-query
+          containerPort: 8080
+        volumeMounts:
+        - name: config
+          mountPath: /etc/go-carbon
+        - name: stats
+          mountPath: /var/lib/graphite/whisper/
+      volumes:
+      - name: stats
+        persistentVolumeClaim:
+          claimName: public-stats
+      - name: config
+        configMap:
+          name: go-carbon-public

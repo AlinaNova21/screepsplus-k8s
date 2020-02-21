@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- cronjob-sync.yml
+- pvc-public-stats.yml
+- deploy-go-carbon.yml
+- svc-go-carbon.yml
+- deploy-carbonapi.yml
+- svc-carbonapi.yml
+- deploy-grafana.yml
+- svc-grafana.yml
+configMapGenerator:
+- name: go-carbon
+  files:
+  - configs/go-carbon/go-carbon.conf
+  - configs/go-carbon/storage-aggregation.conf
+  - configs/go-carbon/storage-schemas.conf
+- name: go-carbon-public
+  files:
+  - configs/go-carbon-public/go-carbon.conf
+  - configs/go-carbon-public/storage-aggregation.conf
+  - configs/go-carbon-public/storage-schemas.conf
+- name: carbonapi-public
+  files:
+  - carbonapi.yaml=configs/carbonapi-public.yaml
+- name: grafana-public
+  files:
+  - configs/grafana-public/grafana.ini
