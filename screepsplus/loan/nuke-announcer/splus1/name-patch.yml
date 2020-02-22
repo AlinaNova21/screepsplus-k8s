@@ -1,0 +1,14 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: nuke-announcer
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: nuke-announcer
+            env:
+            - name: NA_SERVER
+              value: splus1

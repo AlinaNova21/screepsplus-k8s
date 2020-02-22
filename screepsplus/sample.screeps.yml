@@ -1,0 +1,62 @@
+servers:
+  mmo:
+    host: screeps.com
+    secure: true
+    port: 443
+    # ScreepsPlus user
+    token: '***APITOKEN***'
+  loan:
+    host: screeps.com
+    secure: true
+    port: 443
+    # LeagueOfAutomatedNations user
+    token: '***APITOKEN***'
+  botarena:
+    host: botarena.screepspl.us
+    secure: true
+    port: 443
+    username: CaptureBot
+    password: CaptureBot
+  swc:
+    host: swc.screepspl.us
+    secure: true
+    port: 443
+    username: CaptureBot
+    password: CaptureBot
+  splus1:
+    host: server1.screepspl.us
+    secure: true
+    port: 443
+    username: CaptureBot
+    password: CaptureBot
+  splus2:
+    host: server2.screepspl.us
+    secure: true
+    port: 443
+    username: CaptureBot
+    password: CaptureBot
+configs:
+  nuke-announcer:
+    slack:
+      webhook: slackWebhookURL
+      channel: '#screepsplus-alerts'
+  nuke-announcer-mmo:
+    slack:
+      webhook: slackWebhookURL
+      channel: '#screepsplus-alerts'
+  nuke-announcer-botarena:
+    slack:
+      webhook: slackWebhookURL
+      channel: '#screepsplus-alerts'
+  nuke-announcer-swc:
+    slack:
+      webhook: slackWebhookURL
+      channel: '#screepsplus-alerts'
+  nuke-announcer-splus1:
+    slack:
+      webhook: slackWebhookURL
+      channel: '#screepsplus-alerts'
+  nuke-announcer-splus2:
+    slack:
+      webhook: slackWebhookURL
+      channel: '#screepsplus-alerts'

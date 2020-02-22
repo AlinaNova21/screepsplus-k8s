@@ -1,0 +1,60 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: nuke-announcer
+    type: scraper
+  name: nuke-announcer
+spec:
+  concurrencyPolicy: Forbid
+  schedule: '*/20 * * * *'
+  jobTemplate:
+    metadata:
+      labels:
+        app: nuke-announcer
+    spec:
+      template:
+        metadata:
+          labels:
+            app: nuke-announcer
+            type: scraper
+        spec:
+          affinity:
+            podAntiAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                    - key: type
+                      operator: In
+                      values:
+                      - scraper
+                  topologyKey: kubernetes.io/hostname
+                weight: 1
+          containers:
+          - args:
+            - yarn
+            - start
+            - --file=/data/nukes.json
+            - --server=$(NA_SERVER)
+            - --config=nuke-announcer-$(NA_SERVER)
+            env:
+            - name: SCREEPS_CONFIG
+              value: /config/.screeps.yml
+            - name: NA_SERVER
+              value: unknown
+            image: ags131/screeps-nuke-announcer
+            name: nuke-announcer
+            volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /config
+              name: config
+          restartPolicy: OnFailure
+          volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: nuke-announcer
+          - name: config
+            secret:
+              secretName: screeps
