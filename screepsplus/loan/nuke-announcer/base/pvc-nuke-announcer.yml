@@ -5,8 +5,9 @@ metadata:
     app: nuke-announcer
   name: nuke-announcer
 spec:
+  storageClassName: nfs
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi
+      storage: 100Mi

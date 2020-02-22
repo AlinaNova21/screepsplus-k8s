@@ -22,7 +22,7 @@ configMapGenerator:
   - configs/go-carbon-public/storage-schemas.conf
 - name: carbonapi-public
   files:
-  - carbonapi.yaml=configs/carbonapi-public.yaml
+  - carbonapi.yaml=configs/carbonapi-public.yml
 - name: grafana-public
   files:
   - configs/grafana-public/grafana.ini
