@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-carbon-public
+  name: go-carbon
 spec:
   strategy:
     type: "Recreate"
   selector:
     matchLabels:
-      app: go-carbon-public
+      app: go-carbon
   template:
     metadata:
       labels:
-        app: go-carbon-public
+        app: go-carbon
     spec:
       affinity:
         nodeAffinity:
@@ -23,7 +23,7 @@ spec:
                 values:
                 - 'true'
       containers:
-      - name: go-carbon-public
+      - name: go-carbon
         image: ags131/go-carbon
         resources:
           limits:
@@ -40,7 +40,7 @@ spec:
       volumes:
       - name: stats
         persistentVolumeClaim:
-          claimName: public-stats
+          claimName: stats
       - name: config
         configMap:
-          name: go-carbon-public
+          name: go-carbon

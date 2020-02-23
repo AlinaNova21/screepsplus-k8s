@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grafana-public
+  name: grafana
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: grafana-public
+      app: grafana
   template:
     metadata:
       labels:
-        app: grafana-public
+        app: grafana
     spec:
       affinity:
         nodeAffinity:
@@ -63,4 +63,4 @@ spec:
           secretName: cloudsql
       - name: config
         configMap:
-          name: grafana-public
+          name: grafana

@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: carbonapi-public
+  name: carbonapi
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: carbonapi-public
+      app: carbonapi
   template:
     metadata:
       labels:
-        app: carbonapi-public
+        app: carbonapi
     spec:
       affinity:
         nodeAffinity:
@@ -23,7 +23,7 @@ spec:
                 values:
                 - 'true'
       containers:
-      - name: carbonapi-public
+      - name: carbonapi
         image: ags131/carbonapi
         resources:
           limits:
@@ -32,11 +32,3 @@ spec:
         ports:
         - name: http-query
           containerPort: 8081
-        volumeMounts:
-        - name: config
-          mountPath: /etc/carbonapi.yaml
-          subPath: carbonapi.yaml
-      volumes:
-      - name: config
-        configMap:
-          name: carbonapi-public

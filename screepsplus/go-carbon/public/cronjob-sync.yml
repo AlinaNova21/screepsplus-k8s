@@ -1,0 +1,47 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: stats-sync
+spec:
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: "Replace"
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - go-carbon
+                topologyKey: kubernetes.io/hostname
+          containers:
+          - name: rsync
+            image: instrumentisto/rsync-ssh
+            args:
+            - rsync
+            - -a
+            - --delete
+            - root@screepspl.us:/srv/screepspl.us/data/public
+            - /data/
+            volumeMounts:
+            - name: ssh
+              mountPath: /root/.ssh
+            - name: stats
+              mountPath: /data
+          restartPolicy: OnFailure
+          volumes:
+          - name: ssh
+            secret:
+              secretName: splus-ssh
+              defaultMode: 256
+          - name: stats
+            persistentVolumeClaim:
+              claimName: stats

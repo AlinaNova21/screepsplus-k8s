@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: go-carbon-public
+  name: carbonapi
 spec:
   selector:
-    app: go-carbon-public
+    app: carbonapi
   ports:
   - name: http-query
-    port: 8080
+    port: 8081
     targetPort: http-query

@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carbonapi
+spec:
+  template:
+    spec:
+      containers:
+      - name: carbonapi
+        volumeMounts:
+        - name: config
+          mountPath: /etc/carbonapi.yaml
+          subPath: carbonapi.yml
+      volumes:
+      - name: config
+        configMap:
+          name: carbonapi

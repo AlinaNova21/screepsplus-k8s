@@ -1,7 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 bases:
-- public-stats
 - storage
+- go-carbon/public
+- grafana/public
+- loan
 resources:
 - ingress-public-stats.yml

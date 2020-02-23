@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: public-stats-sync
+  name: stats-sync-main
 spec:
   schedule: "*/1 * * * *"
   concurrencyPolicy: "Replace"
@@ -20,7 +20,7 @@ spec:
                   - key: app
                     operator: In
                     values:
-                    - go-carbon-public
+                    - go-carbon
                 topologyKey: kubernetes.io/hostname
           containers:
           - name: rsync
@@ -29,7 +29,7 @@ spec:
             - rsync
             - -a
             - --delete
-            - root@screepspl.us:/srv/screepspl.us/data/public/
+            - root@screepspl.us:/srv/screepspl.us/data/
             - /data/
             volumeMounts:
             - name: ssh
@@ -44,4 +44,4 @@ spec:
               defaultMode: 256
           - name: stats
             persistentVolumeClaim:
-              claimName: public-stats
+              claimName: stats

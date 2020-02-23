@@ -1,10 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: public-stats
+  name: stats
 spec:
-  accessModes:
-  - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 300Gi
