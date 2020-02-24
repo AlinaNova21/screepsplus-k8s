@@ -1,2 +1,2 @@
 #!/bin/bash
-kubectl create secret generic screeps --from-file=.screeps.yml
+kubectl create secret generic screeps --from-file=.screeps.yml -n loan

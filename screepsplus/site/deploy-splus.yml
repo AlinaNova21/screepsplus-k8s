@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: screepsplus
+spec:
+  selector:
+    matchLabels:
+      app: screepsplus
+  template:
+    metadata:
+      labels:
+        app: screepsplus
+    spec:
+      containers:
+      - name: screepsplus
+        image: ags131/screepsplus-site
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
+        ports:
+        - name: http
+          containerPort: 2015

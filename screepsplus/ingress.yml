@@ -1,9 +1,16 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: public-stats
+  name: main
 spec:
   rules:
+  - 
+    host: wg1.dev
+    http:
+      paths:
+      - backend:
+          serviceName: screepsplus
+          servicePort: http
   - 
     host: stats.wg1.dev
     http:
