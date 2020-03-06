@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vk-cloudsql
+spec:
+  selector:
+    app: vk-cloudsql
+  ports:
+  - name: tcp
+    port: 3306
+    targetPort: tcp

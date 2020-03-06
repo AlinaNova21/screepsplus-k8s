@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+- ../base
+nameSuffix: -swc
+commonLabels:
+  server: swc
+patchesJson6902:
+  - path: cronjob-patch.yml
+    target:
+      name: vk-botscan
+      group: batch
+      kind: CronJob
+      version: v1beta1
+  - path: cronjob-patch.yml
+    target:
+      name: vk-notify
+      group: batch
+      kind: CronJob
+      version: v1beta1
+  - path: cronjob-patch.yml
+    target:
+      name: vk-maint
+      group: batch
+      kind: CronJob
+      version: v1beta1

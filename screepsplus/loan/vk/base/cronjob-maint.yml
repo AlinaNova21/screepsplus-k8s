@@ -1,0 +1,59 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: vk
+    module: maint
+    type: scraper
+  name: vk-maint
+spec:
+  concurrencyPolicy: Forbid
+  schedule: '1 */1 * * *'
+  jobTemplate:
+    metadata:
+      labels:
+        app: vk
+        module: maint
+    spec:
+      template:
+        metadata:
+          labels:
+            app: vk
+            module: maint
+            type: scraper
+        spec:
+          affinity:
+            podAntiAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                    - key: type
+                      operator: In
+                      values:
+                      - scraper
+                  topologyKey: kubernetes.io/hostname
+                weight: 1
+          containers:
+          - name: maint
+            image: gcr.io/screeps-159019/vk:master
+            imagePullPolicy: Always
+            args:
+            - yarn
+            - vk
+            - maintainance 
+            env:
+            - name: DB_LOCATION
+              valueFrom:
+                secretKeyRef:
+                  name: vk-config
+                  key: DB_LOCATION
+            volumeMounts:
+            - name: config
+              mountPath: /app/.settings.json
+              subPath: .settings.json
+          restartPolicy: OnFailure
+          volumes:
+          - name: config
+            secret:
+              secretName: vk-config

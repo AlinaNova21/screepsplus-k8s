@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vk-cloudsql
+spec:
+  selector:
+    matchLabels:
+      app: vk-cloudsql
+  template:
+    metadata:
+      labels:
+        app: vk-cloudsql
+    spec:
+      containers:
+      - name: cloudsql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.16
+        command: ["/cloud_sql_proxy",
+                  "-instances=screeps-159019:us-east1:mysql-1=tcp:0.0.0.0:3306",
+                  # If running on a VPC, the Cloud SQL proxy can connect via Private IP. See:
+                  # https://cloud.google.com/sql/docs/mysql/private-ip for more info.
+                  # "-ip_address_types=PRIVATE",
+                  "-credential_file=/secrets/cloudsql/credentials.json"]
+        ports:
+        - name: tcp
+          containerPort: 3306
+        securityContext:
+          runAsUser: 2  # non-root user
+          allowPrivilegeEscalation: false
+        volumeMounts:
+        - name: cloudsql-instance-credentials
+          mountPath: /secrets/cloudsql
+          readOnly: true
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "100m"
+      volumes:
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: cloudsql

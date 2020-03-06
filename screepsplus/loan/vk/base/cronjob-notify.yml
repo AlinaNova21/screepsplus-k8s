@@ -1,0 +1,59 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: vk
+    module: notify
+    type: scraper
+  name: vk-notify
+spec:
+  concurrencyPolicy: Forbid
+  schedule: '*/5 * * * *'
+  jobTemplate:
+    metadata:
+      labels:
+        app: vk
+        module: notify
+    spec:
+      template:
+        metadata:
+          labels:
+            app: vk
+            module: notify
+            type: scraper
+        spec:
+          affinity:
+            podAntiAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                    - key: type
+                      operator: In
+                      values:
+                      - scraper
+                  topologyKey: kubernetes.io/hostname
+                weight: 1
+          containers:
+          - name: notify
+            image: gcr.io/screeps-159019/vk:master
+            imagePullPolicy: Always
+            args:
+            - yarn
+            - vk
+            - battlenotifications 
+            env:
+            - name: DB_LOCATION
+              valueFrom:
+                secretKeyRef:
+                  name: vk-config
+                  key: DB_LOCATION
+            volumeMounts:
+            - name: config
+              mountPath: /app/.settings.json
+              subPath: .settings.json
+          restartPolicy: OnFailure
+          volumes:
+          - name: config
+            secret:
+              secretName: vk-config
