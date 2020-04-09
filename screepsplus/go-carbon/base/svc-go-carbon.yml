@@ -9,3 +9,6 @@ spec:
   - name: http-query
     port: 8080
     targetPort: http-query
+  - name: tcp-intake
+    port: 2003
+    targetPort: tcp-intake

@@ -35,6 +35,8 @@ spec:
         ports:
         - name: http-query
           containerPort: 8080
+        - name: tcp-intake
+          containerPort: 2003
         volumeMounts:
         - name: config
           mountPath: /etc/go-carbon
