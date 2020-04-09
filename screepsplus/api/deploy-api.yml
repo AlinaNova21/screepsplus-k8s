@@ -1,19 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: screepsplus
+  name: api
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      app: screepsplus
+      app: api
   template:
     metadata:
       labels:
-        app: screepsplus
+        app: api
     spec:
       containers:
-      - name: screepsplus
-        image: ags131/screepsplus-site
+      - name: api
+        image: gcr.io/screeps-159019/stats-api
+        env:
+        - name:  GRAPHITE_HOST
+          value: go-carbon-main
         resources:
           requests:
             memory: "64Mi"
@@ -23,4 +27,4 @@ spec:
             cpu: "50m"
         ports:
         - name: http
-          containerPort: 2015
+          containerPort: 8080

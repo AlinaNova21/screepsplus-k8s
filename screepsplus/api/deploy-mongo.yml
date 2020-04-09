@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-carbon
+  name: mongo
 spec:
   strategy:
     type: "Recreate"
   selector:
     matchLabels:
-      app: go-carbon
+      app: mongo
   template:
     metadata:
       labels:
-        app: go-carbon
+        app: mongo
     spec:
       affinity:
         nodeAffinity:
@@ -23,8 +23,8 @@ spec:
                 values:
                 - 'true'
       containers:
-      - name: go-carbon
-        image: ags131/go-carbon
+      - name: mongo
+        image: mongo:3.6
         resources:
           requests:
             memory: "200Mi"
@@ -33,17 +33,12 @@ spec:
             memory: "1Gi"
             cpu: "100m"
         ports:
-        - name: http-query
-          containerPort: 8080
+        - name: tcp
+          containerPort: 27017
         volumeMounts:
-        - name: config
-          mountPath: /etc/go-carbon
-        - name: stats
-          mountPath: /var/lib/graphite/whisper/
+        - name: db
+          mountPath: /data/db
       volumes:
-      - name: stats
+      - name: db
         persistentVolumeClaim:
-          claimName: stats
-      - name: config
-        configMap:
-          name: go-carbon
+          claimName: mongo-db

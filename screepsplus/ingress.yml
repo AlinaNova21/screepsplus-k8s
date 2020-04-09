@@ -11,6 +11,10 @@ spec:
       - backend:
           serviceName: screepsplus
           servicePort: http
+      - path: /api
+        backend:
+          serviceName: api
+          servicePort: http
   - 
     host: stats.wg1.dev
     http:
