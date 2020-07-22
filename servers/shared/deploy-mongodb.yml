@@ -18,13 +18,6 @@ spec:
       containers:
       - image: mongo
         name: mongodb
-        args:
-        - --wiredTigerCollectionBlockCompressor
-        - none
-        - --wiredTigerJournalCompressor
-        - none
-        - --wiredTigerIndexPrefixCompression
-        - 'false'
         ports:
         - containerPort: 27017
           protocol: TCP
