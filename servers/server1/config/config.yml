@@ -14,7 +14,7 @@ mods:
 - screepsmod-admin-utils
 - screepsmod-history
 - screepsmod-web-client
-#- screepsmod-mail-aws-ses
+- screepsmod-mail-aws-ses
 - screepsmod-market
 #- screepsmod-dynamicmarket
 extraPackages:
