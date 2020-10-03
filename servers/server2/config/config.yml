@@ -38,7 +38,8 @@ serverConfig:
     <div class="screepsplus">
     <h1>ScreepsPlus</h1>
     <h2>Server is being reset for a new season</h2>
-    <h2>SpawnAllowed=10/3-2100UTC</h2>
+    <h2>Spawn is delayed while we resolve some map errors</h2>
+    <h2>SpawnAllowed=10/3-TBD</h2>
     <h2>TickStart=10/4-2100UTC</h2>
     Wecome to the ScreepsPlus seasonal private server.<br>
     Server wipes are quarterly.
