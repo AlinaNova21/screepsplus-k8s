@@ -8,6 +8,7 @@ metadata:
 spec:
   concurrencyPolicy: Forbid
   schedule: '*/20 * * * *'
+  startingDeadlineSeconds: 3600
   jobTemplate:
     metadata:
       labels:

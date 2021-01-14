@@ -1,9 +1,9 @@
 - op: replace
   path: /spec/jobTemplate/spec/template/spec/containers/0/env/0/valueFrom/secretKeyRef/name
-  value: vk-config-mmo
+  value: vk-config-season
 - op: replace
   path: /spec/jobTemplate/spec/template/spec/volumes/0/secret/secretName
-  value: vk-config-mmo
+  value: vk-config-season
 - op: replace
   path: /spec/schedule
   value: '*/5 * * * *'

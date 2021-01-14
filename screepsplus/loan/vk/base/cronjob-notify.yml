@@ -8,7 +8,8 @@ metadata:
   name: vk-notify
 spec:
   concurrencyPolicy: Forbid
-  schedule: '*/5 * * * *'
+  schedule: '*/1 * * * *'
+  startingDeadlineSeconds: 3600
   jobTemplate:
     metadata:
       labels:
