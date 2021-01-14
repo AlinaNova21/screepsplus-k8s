@@ -1,5 +1,6 @@
 bases:
 - ../server-base
+namespace: screepsplus
 commonLabels:
   server: server2
 namePrefix: server2-
