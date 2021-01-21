@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       nodeSelector:
-        screepspl.us/server: server1
+        screepspl.us/server: server0
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -16,7 +16,7 @@ spec:
   template:
     spec:
       nodeSelector:
-        screepspl.us/server: server1
+        screepspl.us/server: server0
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -26,4 +26,4 @@ spec:
   template:
     spec:
       nodeSelector:
-        screepspl.us/server: server1
+        screepspl.us/server: server0

@@ -22,6 +22,7 @@ bots:
   simplebot: "screepsbot-zeswarm"
 localMods: ./mods
 serverConfig:
+  map: random_3x3
   tickRate: 1000
   shardName: screepsplus2
   gclToCPU: true
