@@ -31,6 +31,7 @@ serverConfig:
     <style>.screepsplus h1{  text-align: center; }</style>
     <div class="screepsplus">
       <h1>ScreepsPlus</h1>
+      <h1>*We are currently experiencing technical difficulties. Server will pause and randomly wipe while we are troubleshooting issues. Please check in slack or the events page for more details and resolution time.*</h1>
       Wecome to the ScreepsPlus private server.<br>
       Mods include screepsmod-auth and several custom mods to enable email notifications, control tickrate, power banks, portals, and other internal improvements.<br><br>
       <a href="https://server1.screepspl.us/authmod/password">Click here to set your password</a>
