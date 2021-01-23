@@ -38,6 +38,7 @@ serverConfig:
     <style>.screepsplus h1{  text-align: center; }</style>
     <div class="screepsplus">
     <h1>ScreepsPlus</h1>
+    <h1>*We are currently experiencing technical difficulties. Server will pause and randomly wipe while we are troubleshooting issues. Please check in slack or the events page for more details and resolution time.*</h1>
     Wecome to the ScreepsPlus seasonal private server.<br>
     Server wipes are quarterly.
     Mods include screepsmod-auth and several custom mods to enable email notifications, control tickrate, power banks, portals, and other internal improvements.
