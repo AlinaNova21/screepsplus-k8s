@@ -5,8 +5,17 @@ metadata:
 spec:
   template:
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: screepspl.us/server
+                operator: In
+                values:
+                - server1
       nodeSelector:
-        screepspl.us/server: server0
+        screepspl.us/server: server1
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -15,8 +24,17 @@ metadata:
 spec:
   template:
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: screepspl.us/server
+                operator: In
+                values:
+                - server1
       nodeSelector:
-        screepspl.us/server: server0
+        screepspl.us/server: server1
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -25,5 +43,14 @@ metadata:
 spec:
   template:
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: screepspl.us/server
+                operator: In
+                values:
+                - server1
       nodeSelector:
-        screepspl.us/server: server0
+        screepspl.us/server: server1
