@@ -20,7 +20,7 @@ spec:
         args:
         - -c
         - while true; do sleep 10000; done
-        image: ubuntu #ags131/screeps-toolbox
+        image: ags131/screeps-toolbox
         imagePullPolicy: Always
         name: toolbox
         resources: {}
