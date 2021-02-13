@@ -16,6 +16,7 @@ spec:
         app: vk
         module: botscan
     spec:
+      activeDeadlineSeconds: 300
       template:
         metadata:
           labels:

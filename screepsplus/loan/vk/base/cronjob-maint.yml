@@ -16,6 +16,7 @@ spec:
         app: vk
         module: maint
     spec:
+      activeDeadlineSeconds: 300
       template:
         metadata:
           labels:
