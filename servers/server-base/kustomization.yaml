@@ -1,6 +1,8 @@
 resources:
+- pvc-redis.yml
 - deploy-redis.yml
 - svc-redis.yml
+- pvc-screeps.yml
 - deploy-screeps.yml
 - svc-screeps.yml
 - deploy-toolbox.yml

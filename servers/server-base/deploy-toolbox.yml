@@ -15,24 +15,25 @@ spec:
         app: toolbox
     spec:
       containers:
-      - args:
+      - command:
+        - bash
+        args:
         - -c
         - while true; do sleep 10000; done
-        image: ags131/screeps-toolbox
+        image: ubuntu #ags131/screeps-toolbox
         imagePullPolicy: Always
         name: toolbox
         resources: {}
         volumeMounts:
         - mountPath: /screeps
           name: main
-        - mountPath: /backups
-          name: backups
+        - mountPath: /screeps/history
+          name: history
       volumes:
-      - hostPath:
-          path: /srv/main
-          type: ""
+      - persistentVolumeClaim:
+          claimName: screeps
         name: main
       - hostPath:
-          path: /srv/backups
+          path: /srv/main/history
           type: ""
-        name: backups
+        name: history

@@ -29,7 +29,6 @@ spec:
       nodeSelector:
         screepspl.us/server: server1
       volumes:
-      - hostPath:
-          path: /srv/redis-data
-          type: ""
+      - persistentVolumeClaim:
+          claimName: redis
         name: redis-data

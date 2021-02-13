@@ -39,13 +39,18 @@ spec:
           subPath: market.yml
         - mountPath: /screeps
           name: main
+        - mountPath: /screeps/history
+          name: history
       volumes:
       - configMap:
           defaultMode: 292
           name: config
           optional: false
         name: vol1
-      - hostPath:
-          path: /srv/main
-          type: ""
+      - persistentVolumeClaim:
+          claimName: screeps
         name: main
+      - hostPath:
+          path: /srv/main/history
+          type: ""
+        name: history

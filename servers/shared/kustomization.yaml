@@ -1,3 +1,4 @@
 resources:
+- pvc-mongodb.yml
 - deploy-mongodb.yml
 - svc-mongodb.yml

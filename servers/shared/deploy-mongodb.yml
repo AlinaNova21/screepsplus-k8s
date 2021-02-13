@@ -6,12 +6,14 @@ spec:
   selector:
     matchLabels:
       app: mongodb
+      service: screeps
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: mongodb
+        service: screeps
     spec:
       nodeSelector:
         screepspl.us/server: server0
@@ -27,6 +29,6 @@ spec:
           name: mongo-data
       terminationGracePeriodSeconds: 30
       volumes:
-      - hostPath:
-          path: /srv/mongo-data
+      - persistentVolumeClaim:
+          claimName: mongodb
         name: mongo-data
