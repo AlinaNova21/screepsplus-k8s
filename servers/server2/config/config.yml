@@ -53,5 +53,5 @@ serverConfig:
     This server is funded by backers on Patreon. <br>
     <a target="_blank" href="https://www.patreon.com/bePatron?u=6867142" ><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png"></a>
     </div>
-  whitelist: []
+  whitelist: 
   - psy372test1
