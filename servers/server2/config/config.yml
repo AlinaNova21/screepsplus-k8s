@@ -38,8 +38,9 @@ serverConfig:
     <style>.screepsplus h1{  text-align: center; }</style>
     <div class="screepsplus">
     <h1>ScreepsPlus</h1>
-    <h2>SpawnIn : Sun, Jan 24 2021, 2100 UTC</h2>
-    <h2>TickStart : Mon, Jan 25 2021, 2100 UTC</h2>
+    <h2>SpawnIn : Sat, May 1 2021, 2100 UTC</h2>
+    <h2>TickStart : Sun, May 2 2021, 2100 UTC</h2>
+    <h2>This season will end by ~July 2021</h2>
     Wecome to the ScreepsPlus seasonal private server.<br>
     Server wipes are quarterly.
     Mods include screepsmod-auth and several custom mods to enable email notifications, control tickrate, power banks, portals, and other internal improvements.
@@ -53,4 +54,4 @@ serverConfig:
     <a target="_blank" href="https://www.patreon.com/bePatron?u=6867142" ><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png"></a>
     </div>
   whitelist: []
-  
+  - psy372test1
