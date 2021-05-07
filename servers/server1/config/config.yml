@@ -12,7 +12,7 @@ mods:
 - screepsmod-cors
 - screepsmod-auth
 - screepsmod-admin-utils
-- screepsmod-history
+# - screepsmod-history
 - screepsmod-web-client
 - screepsmod-mail-aws-ses
 - screepsmod-market
