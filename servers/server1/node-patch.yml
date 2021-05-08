@@ -13,7 +13,7 @@ spec:
               - key: screepspl.us/server
                 operator: In
                 values:
-                - server1
+                - server0
       nodeSelector:
         screepspl.us/server: server1
 ---
