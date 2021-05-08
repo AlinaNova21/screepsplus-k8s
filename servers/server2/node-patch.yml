@@ -14,8 +14,6 @@ spec:
                 operator: In
                 values:
                 - server0
-      nodeSelector:
-        screepspl.us/server: server2
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,8 +31,6 @@ spec:
                 operator: In
                 values:
                 - server2
-      nodeSelector:
-        screepspl.us/server: server2
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -52,5 +48,3 @@ spec:
                 operator: In
                 values:
                 - server2
-      nodeSelector:
-        screepspl.us/server: server2

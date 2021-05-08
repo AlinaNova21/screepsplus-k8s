@@ -26,8 +26,6 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: redis-data
-      nodeSelector:
-        screepspl.us/server: server1
       volumes:
       - persistentVolumeClaim:
           claimName: redis
