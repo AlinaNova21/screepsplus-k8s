@@ -6,3 +6,4 @@ bases:
 - vk
 resources:
 - ns-loan.yml
+- ingress.yml

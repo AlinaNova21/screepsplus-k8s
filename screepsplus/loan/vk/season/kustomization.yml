@@ -24,3 +24,9 @@ patchesJson6902:
       group: batch
       kind: CronJob
       version: v1beta1
+  - path: web-patch.yml
+    target:
+      name: vk-web
+      group: apps
+      kind: Deployment
+      version: v1
