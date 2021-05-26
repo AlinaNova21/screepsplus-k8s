@@ -1,0 +1,49 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: $NAME
+  name: $NAME
+spec:
+  concurrencyPolicy: Forbid
+  schedule: '$SCHEDULE'
+  startingDeadlineSeconds: 3600
+  jobTemplate:
+    metadata:
+      labels:
+        app: $NAME
+    spec:
+      activeDeadlineSeconds: 300
+      template:
+        metadata:
+          labels:
+            app: $NAME
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - loan
+                topologyKey: kubernetes.io/hostname
+          containers:
+          - name: $NAME
+            image: ags131/loan
+            imagePullPolicy: Always
+            command:
+            - flask
+            - $COMMAND
+            env:
+            - name: SETTINGS
+              value: /data/settings
+            volumeMounts:
+            - name: loan
+              mountPath: /data
+          restartPolicy: OnFailure
+          volumes:
+          - name: loan
+            persistentVolumeClaim:
+              claimName: loan

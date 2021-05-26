@@ -36,7 +36,7 @@ spec:
           - args:
             - yarn
             - start
-            - --file=/data/nukes.json
+            - --db=mysql://vk@vk-cloudsql:3306/nuke-announcer
             - --server=$(NA_SERVER)
             - --config=nuke-announcer-$(NA_SERVER)
             env:
@@ -47,15 +47,10 @@ spec:
             image: ags131/screeps-nuke-announcer
             name: nuke-announcer
             volumeMounts:
-            - mountPath: /data
-              name: data
             - mountPath: /config
               name: config
           restartPolicy: OnFailure
           volumes:
-          - name: data
-            persistentVolumeClaim:
-              claimName: nuke-announcer
           - name: config
             secret:
               secretName: screeps

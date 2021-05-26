@@ -1,0 +1,80 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: main
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - host: loan.wg1.dev
+    http:
+      paths:
+      - path: /vk/mmo(/|$)(.*)
+        backend:
+          serviceName: vk-web-mmo
+          servicePort: http
+      - path: /()(.*)
+        backend:
+          serviceName: loan
+          servicePort: http
+  - host: loan.screepspl.us
+    http:
+      paths:
+      - path: /vk/mmo(/|$)(.*)
+        backend:
+          serviceName: vk-web-mmo
+          servicePort: http
+      - path: /()(.*)
+        backend:
+          serviceName: loan
+          servicePort: http
+  - host: leagueofautomatednations.com
+    http:
+      paths:
+      - path: /vk/mmo(/|$)(.*)
+        backend:
+          serviceName: vk-web-mmo
+          servicePort: http
+      - path: /()(.*)
+        backend:
+          serviceName: loan
+          servicePort: http
+  - host: www.leagueofautomatednations.com
+    http:
+      paths:
+      - path: /vk/mmo(/|$)(.*)
+        backend:
+          serviceName: vk-web-mmo
+          servicePort: http
+      - path: /()(.*)
+        backend:
+          serviceName: loan
+          servicePort: http
+  - 
+    host: vk.wg1.dev
+    http:
+      paths:
+      - path: /vk/mmo(/|$)(.*)
+        backend:
+          serviceName: vk-web-mmo
+          servicePort: http
+      - path: /vk/botarena(/|$)(.*)
+        backend:
+          serviceName: vk-web-botarena
+          servicePort: http
+      - path: /vk/seasonal(/|$)(.*)
+        backend:
+          serviceName: vk-web-season
+          servicePort: http
+      - path: /vk/screepsplus1(/|$)(.*)
+        backend:
+          serviceName: vk-web-splus1
+          servicePort: http
+      - path: /vk/screepsplus2(/|$)(.*)
+        backend:
+          serviceName: vk-web-splus2
+          servicePort: http
+      - path: /vk/swc(/|$)(.*)
+        backend:
+          serviceName: vk-web-swc
+          servicePort: http

@@ -1,0 +1,49 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: loan-import-users
+  name: loan-import-users
+spec:
+  concurrencyPolicy: Forbid
+  schedule: '4 2 * * *'
+  startingDeadlineSeconds: 3600
+  jobTemplate:
+    metadata:
+      labels:
+        app: loan-import-users
+    spec:
+      activeDeadlineSeconds: 300
+      template:
+        metadata:
+          labels:
+            app: loan-import-users
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - loan
+                topologyKey: kubernetes.io/hostname
+          containers:
+          - name: loan-import-users
+            image: ags131/loan
+            imagePullPolicy: Always
+            command:
+            - flask
+            - import_users
+            env:
+            - name: SETTINGS
+              value: /data/settings
+            volumeMounts:
+            - name: loan
+              mountPath: /data
+          restartPolicy: OnFailure
+          volumes:
+          - name: loan
+            persistentVolumeClaim:
+              claimName: loan

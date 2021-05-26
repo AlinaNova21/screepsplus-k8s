@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vk-web
+  labels:
+    app: vk
+    module: web
+spec:
+  selector:
+    app: vk
+    module: web
+  ports:
+  - name: http
+    port: 80
+    targetPort: http

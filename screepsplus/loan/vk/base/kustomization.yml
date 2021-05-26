@@ -4,5 +4,3 @@ resources:
 - cronjob-botscan.yml
 - cronjob-notify.yml
 - cronjob-maint.yml
-- deploy-web.yml
-- svc-web.yml

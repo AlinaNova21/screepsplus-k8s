@@ -1,0 +1,49 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: loan-export-to-segments
+  name: loan-export-to-segments
+spec:
+  concurrencyPolicy: Forbid
+  schedule: '*/20 * * * *'
+  startingDeadlineSeconds: 3600
+  jobTemplate:
+    metadata:
+      labels:
+        app: loan-export-to-segments
+    spec:
+      activeDeadlineSeconds: 300
+      template:
+        metadata:
+          labels:
+            app: loan-export-to-segments
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - loan
+                topologyKey: kubernetes.io/hostname
+          containers:
+          - name: loan-export-to-segments
+            image: ags131/loan
+            imagePullPolicy: Always
+            command:
+            - flask
+            - export_to_segments
+            env:
+            - name: SETTINGS
+              value: /data/settings
+            volumeMounts:
+            - name: loan
+              mountPath: /data
+          restartPolicy: OnFailure
+          volumes:
+          - name: loan
+            persistentVolumeClaim:
+              claimName: loan

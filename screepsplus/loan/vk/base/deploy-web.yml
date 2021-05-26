@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vk-web
+  labels:
+    app: vk
+    module: web
+spec:
+  selector:
+    matchLabels:
+      app: vk
+      module: web
+  template:
+    metadata:
+      labels:
+        app: vk
+        module: web
+    spec:
+      containers:
+      - name: web
+        containers:
+        image: gcr.io/screeps-159019/vk:master
+        imagePullPolicy: Always
+        env:
+        - name: DB_LOCATION
+          valueFrom:
+            secretKeyRef:
+              name: vk-config
+              key: DB_LOCATION
+        ports:
+        - name: http
+          containerPort: 3001
+        volumeMounts:
+        - name: config
+          mountPath: /app/.settings.json
+          subPath: .settings.json
+      volumes:
+      - name: config
+        secret:
+          secretName: vk-config

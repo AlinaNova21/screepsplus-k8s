@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cloud.google.com/gke-preemptible
+                operator: NotIn
+                values:
+                - 'true'
+      containers:
+      - name: postgres
+        image: postgres:11
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "50m"
+          limits:
+            memory: "1Gi"
+            cpu: "100m"
+        env:
+        - name: POSTGRES_USER
+          value: screeps
+        - name: POSTGRES_DB
+          value: screeps
+        - name: POSTGRES_PASSWORD
+          value: abc123
+        ports:
+        - name: tcp
+          containerPort: 5432
+        volumeMounts:
+        - name: postgres
+          mountPath: /var/lib/postgres/data
+      volumes:
+      - name: postgres
+        persistentVolumeClaim:
+          claimName: postgres

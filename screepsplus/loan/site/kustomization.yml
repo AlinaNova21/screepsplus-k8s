@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- pvc-loan.yml
+- deploy-loan.yml
+- svc-loan.yml
+- cronjob-export-to-segments.yml
+- cronjob-import-rankings.yml
+- cronjob-import-user-rankings.yml
+- cronjob-import-users.yml
