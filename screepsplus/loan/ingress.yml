@@ -9,7 +9,7 @@ spec:
   - host: loan.wg1.dev
     http:
       paths:
-      - path: /vk/mmo(/|$)(.*)
+      - path: /vk(/|$)(.*)
         backend:
           serviceName: vk-web-mmo
           servicePort: http
@@ -20,7 +20,7 @@ spec:
   - host: loan.screepspl.us
     http:
       paths:
-      - path: /vk/mmo(/|$)(.*)
+      - path: /vk(/|$)(.*)
         backend:
           serviceName: vk-web-mmo
           servicePort: http
@@ -31,7 +31,7 @@ spec:
   - host: leagueofautomatednations.com
     http:
       paths:
-      - path: /vk/mmo(/|$)(.*)
+      - path: /vk(/|$)(.*)
         backend:
           serviceName: vk-web-mmo
           servicePort: http
@@ -42,7 +42,7 @@ spec:
   - host: www.leagueofautomatednations.com
     http:
       paths:
-      - path: /vk/mmo(/|$)(.*)
+      - path: /vk(/|$)(.*)
         backend:
           serviceName: vk-web-mmo
           servicePort: http
