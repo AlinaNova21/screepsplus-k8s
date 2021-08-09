@@ -1,5 +1,5 @@
 version: latest
-nodeVersion: Dubnium
+nodeVersion: Erbium
 runnerThreads: 12
 env:
   shared:
