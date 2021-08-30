@@ -1,10 +1,10 @@
 #!/bin/bash
-gcloud sql users create grafana       --host=cloudsqlproxy~% --instance=mysql-1
-gcloud sql users create hosted-agent  --host=cloudsqlproxy~% --instance=mysql-1
-gcloud sql users create loan          --host=cloudsqlproxy~% --instance=mysql-1
-gcloud sql users create vk            --host=cloudsqlproxy~% --instance=mysql-1
+# gcloud sql users create grafana       --host=cloudsqlproxy~% --instance=mysql-1
+# gcloud sql users create hosted-agent  --host=cloudsqlproxy~% --instance=mysql-1
+# gcloud sql users create loan          --host=cloudsqlproxy~% --instance=mysql-1
+# gcloud sql users create vk            --host=cloudsqlproxy~% --instance=mysql-1
 
-gcloud iam service-accounts keys create credentials.json --iam-account=splus-cloudsql@screeps-159019.iam.gserviceaccount.com
-kubectl create secret generic cloudsql --from-file=credentials.json
-kubectl create secret generic cloudsql --from-file=credentials.json -n loan
-rm credentials.json
+# gcloud iam service-accounts keys create credentials.json --iam-account=splus-cloudsql@screeps-159019.iam.gserviceaccount.com
+# kubectl create secret generic cloudsql --from-file=credentials.json
+# kubectl create secret generic cloudsql --from-file=credentials.json -n loan
+# rm credentials.json

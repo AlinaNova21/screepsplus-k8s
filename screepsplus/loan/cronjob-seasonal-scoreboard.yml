@@ -2,22 +2,22 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   labels:
-    app: nuke-announcer
+    app: seasonal-scoreboard
     type: scraper
-  name: nuke-announcer
+  name: seasonal-scoreboard
 spec:
   concurrencyPolicy: Forbid
-  schedule: '*/20 * * * *'
+  schedule: '* * * * *'
   startingDeadlineSeconds: 3600
   jobTemplate:
     metadata:
       labels:
-        app: nuke-announcer
+        app: seasonal-scoreboard
     spec:
       template:
         metadata:
           labels:
-            app: nuke-announcer
+            app: seasonal-scoreboard
             type: scraper
         spec:
           affinity:
@@ -33,20 +33,11 @@ spec:
                   topologyKey: kubernetes.io/hostname
                 weight: 1
           containers:
-          - args:
-            - yarn
-            - start
-            - --server=$(NA_SERVER)
-            - --config=nuke-announcer-$(NA_SERVER)
-            - --db=mysql://screeps:screeps@mysql.db.svc:3306/nuke-announcer
-            # - --db=mysql://vk@vk-cloudsql:3306/nuke-announcer
-            env:
+          - env:
             - name: SCREEPS_CONFIG
               value: /config/.screeps.yml
-            - name: NA_SERVER
-              value: unknown
-            image: ags131/screeps-nuke-announcer
-            name: nuke-announcer
+            image: ags131/seasonal-scoreboard
+            name: seasonal-scoreboard
             volumeMounts:
             - mountPath: /config
               name: config

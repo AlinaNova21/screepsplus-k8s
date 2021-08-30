@@ -4,7 +4,13 @@ metadata:
   name: main
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  tls:
+  - hosts:
+    - www.leagueofautomatednations.com
+    - loan.screepspl.us
+    secretName: loan-cert
   rules:
   - host: loan.wg1.dev
     http:
@@ -18,17 +24,6 @@ spec:
           serviceName: loan
           servicePort: http
   - host: loan.screepspl.us
-    http:
-      paths:
-      - path: /vk(/|$)(.*)
-        backend:
-          serviceName: vk-web-mmo
-          servicePort: http
-      - path: /()(.*)
-        backend:
-          serviceName: loan
-          servicePort: http
-  - host: leagueofautomatednations.com
     http:
       paths:
       - path: /vk(/|$)(.*)

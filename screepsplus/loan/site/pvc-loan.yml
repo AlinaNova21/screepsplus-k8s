@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: loan
 spec:
-  storageClassName: standard
+  storageClassName: longhorn
   accessModes:
   - ReadWriteOnce
   resources:

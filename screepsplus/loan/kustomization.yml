@@ -8,4 +8,5 @@ bases:
 - vk
 resources:
 - ingress.yml
+- cronjob-seasonal-scoreboard.yml
 - ns-loan.yml

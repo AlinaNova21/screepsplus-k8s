@@ -1,0 +1,6 @@
+
+namespace: db
+bases:
+- mysql
+resources:
+- ns-db.yml

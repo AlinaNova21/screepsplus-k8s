@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   name: loan
 spec:
-  strategy:
-    type: "Recreate"
   selector:
     matchLabels:
       app: loan
@@ -13,25 +11,13 @@ spec:
       labels:
         app: loan
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: cloud.google.com/gke-preemptible
-                operator: In
-                values:
-                - 'true'
       containers:
       - name: loan
         image: ags131/loan
         resources:
           requests:
             memory: "100Mi"
-            cpu: "50m"
-          limits:
-            memory: "200Mi"
-            cpu: "100m"
+            cpu: "10m"
         env:
         - name: SETTINGS
           value: /data/settings

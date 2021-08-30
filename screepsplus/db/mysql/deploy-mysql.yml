@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cloud.google.com/gke-preemptible
+                operator: NotIn
+                values:
+                - 'true'
+      containers:
+      - name: mysql
+        image: mariadb
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "50m"
+          limits:
+            memory: "1Gi"
+            cpu: "100m"
+        env:
+        - name: MARIADB_RANDOM_ROOT_PASSWORD
+          value: 'true'
+        ports:
+        - name: tcp
+          containerPort: 3306
+        volumeMounts:
+        - name: mysql
+          mountPath: /var/lib/mysql
+          subPath: mysql
+      volumes:
+      - name: mysql
+        persistentVolumeClaim:
+          claimName: mysql

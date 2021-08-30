@@ -7,6 +7,6 @@ bases:
 - splus2
 - swc
 - botarena
-resources:
-- deploy-cloudsql.yml
-- svc-cloudsql.yml
+# resources:
+# - deploy-cloudsql.yml
+# - svc-cloudsql.yml
