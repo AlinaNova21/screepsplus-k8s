@@ -33,8 +33,6 @@ serverConfig:
     CPU_MAX: 120
     CPU_BASE: 20
     CPU_STEP: 10
-    UPGRADE_CONTROLLER_POWER: 10
-    GCL_MULTIPLY: 100000
   statsToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InB1YmxpYyIsInN1YiI6InB1YmxpYyIsImlhdCI6MTU2MjA4MTc2NCwiYXVkIjoic2NyZWVwc3BsLnVzIiwiaXNzIjoic2NyZWVwc3BsLnVzIn0.XgkSmWpf83VLscHiU7f-nEjq8lgZt6ZmB9BEsP_EiqQ
   welcomeText: |
     <style>.screepsplus h1{  text-align: center; }</style>
