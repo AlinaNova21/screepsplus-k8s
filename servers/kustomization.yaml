@@ -3,7 +3,8 @@ kind: Kustomization
 namespace: screepsplus
 bases:
 - shared
-- server1
-- server2
+- server0
+#- server1
+#- server2
 resources:
 - ns-screepsplus.yml

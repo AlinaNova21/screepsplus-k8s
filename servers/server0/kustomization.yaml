@@ -1,0 +1,15 @@
+bases:
+- ../server-base
+namespace: screepsplus
+commonLabels:
+  server: server0
+namePrefix: server0-
+configMapGenerator:
+- name: config
+  files:
+  - config.yml=config/config.yml
+  - market.yml=config/market.yml
+patchesStrategicMerge:
+- node-patch.yml
+resources:
+- ingress.yml

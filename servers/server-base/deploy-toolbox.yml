@@ -4,7 +4,6 @@ metadata:
   labels:
     app: toolbox
   name: toolbox
-  namespace: server2
 spec:
   selector:
     matchLabels:

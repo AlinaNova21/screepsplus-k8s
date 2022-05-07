@@ -1,0 +1,45 @@
+version: latest
+nodeVersion: Dubnium
+runnerThreads: 12
+env:
+  shared:
+    MONGO_HOST: mongodb
+    MONGO_DATABASE: screeps0
+    REDIS_HOST: server0-redis
+mods:
+- screepsmod-map-tool
+- screepsmod-mongo
+- screepsmod-cors
+- screepsmod-auth
+- screepsmod-admin-utils
+# - screepsmod-history
+- screepsmod-web-client
+- screepsmod-mail-aws-ses
+- screepsmod-market
+#- screepsmod-dynamicmarket
+extraPackages:
+#  '@screeps/driver': 'screeps/driver#fix-room-activation/DEV-476'
+bots:
+  zeswarm: "screepsbot-zeswarm"
+localMods: ./mods
+serverConfig:
+  map: random_4x4
+  tickRate: 1000
+  shardName: screepsplus0
+  statsToken:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InB1YmxpYyIsInN1YiI6InB1YmxpYyIsImlhdCI6MTU2MjA4MTc2NCwiYXVkIjoic2NyZWVwc3BsLnVzIiwiaXNzIjoic2NyZWVwc3BsLnVzIn0.XgkSmWpf83VLscHiU7f-nEjq8lgZt6ZmB9BEsP_EiqQ
+  welcomeText: |
+    <style>.screepsplus h1{  text-align: center; }</style>
+    <div class="screepsplus">
+      <h1>ScreepsPlus</h1>
+      <h1>*We are currently experiencing technical difficulties. Server will pause and randomly wipe while we are troubleshooting issues. Please check in slack or the events page for more details and resolution time.*</h1>
+      Wecome to the ScreepsPlus private server.<br>
+      Mods include screepsmod-auth and several custom mods to enable email notifications, control tickrate, power banks, portals, and other internal improvements.<br><br>
+      <a href="https://server1.screepspl.us/authmod/password">Click here to set your password</a>
+      <br><br>
+      <div style="text-align: center">
+        This server is funded by backers on Patreon. <br>
+        <a target="_blank" href="https://www.patreon.com/bePatron?u=6867142" ><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png"></a>
+      </div>
+    </div>
+
+  whitelist: []
