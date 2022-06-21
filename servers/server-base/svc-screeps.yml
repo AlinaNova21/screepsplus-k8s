@@ -11,3 +11,18 @@ spec:
   selector:
     app: screeps
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: screeps-lb
+spec:
+  ports:
+  - name: http
+    port: 21025
+    protocol: TCP
+    targetPort: 21025
+  selector:
+    app: screeps
+  type: LoadBalancer
+

@@ -1,18 +1,24 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: server
 spec:
   rules:
   - host: test.server0.screepspl.us
+    type: Prefix
     http:
       paths:
       - backend:
-          serviceName: screeps
-          servicePort: http
+          service:
+            name: screeps
+            port: 
+              name: http
   - host: server0.screepspl.us
+    type: Prefix
     http:
       paths:
       - backend:
-          serviceName: screeps
-          servicePort: http
+          service:
+            name: screeps
+            port: 
+              name: http
